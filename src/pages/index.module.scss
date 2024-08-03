@@ -1,55 +1,44 @@
-.gridContainer {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 sütunlu grid */
-  gap: 16px; /* Kartlar arasındaki boşluk */
-  justify-items: center; /* Kartları merkezle */
-  padding: 16px; /* Grid konteynerinin iç boşluğu */
-  width: 100%; /* Kapsayıcı genişliği */
-  max-width: 1200px; /* Maksimum genişlik */
-  margin: 0 auto; /* Ortalamak için */
-}
-.card {
-  background-color: #fff;
+// styles/index.module.scss
+
+.container {
   display: flex;
   flex-direction: column;
-  position: relative;
-  right: 0;
-  top: 0;
+  align-items: center;
+}
+
+.searchBar {
+  display: flex;
+  margin-bottom: 1rem;
   width: 100%;
-  max-width: 20rem;
-  padding: 1rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  text-align: center;
-  margin-bottom: 16px;
+  max-width: 600px; /* Adjust as needed */
 
-  .image {
-    border-radius: 8px;
-  }
-
-  h3 {
-    margin-top: 16px;
-    font-size: 1.5rem;
-  }
-
-  p {
-    margin-top: 8px;
+  input {
+    flex: 1;
+    padding: 0.5rem;
     font-size: 1rem;
   }
 
   button {
     padding: 8px 16px;
     font-size: 1rem;
-    margin-top: 12px;
-    background-color: #b4ecba;
+    margin-left: 0.5rem;
+    background-color: #d4f0d7;
     color: #fff;
     border-radius: 4px;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 
     &:hover {
-      background-color: #a7e0ba;
+      background-color: #a9f1c1;
     }
   }
+}
+
+.gridContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px; /* Adjust as needed */
 }

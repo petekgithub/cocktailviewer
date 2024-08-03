@@ -1,12 +1,15 @@
+// pages/index.tsx
 import { useState } from "react";
 import Layout from "@/components/Layout/Layout";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import CocktailCard from "@/components/CocktailCard/CocktailCard";
 import { Cocktail, CocktailData } from "@/interfaces/interfaces";
 import styles from "./index.module.scss";
+import NavBar from "@/components/NavBar/NavBar";
 
 const HomePage = () => {
   const [cocktails, setCocktails] = useState<Cocktail[]>([]);
+  const [basket, setBasket] = useState<Cocktail[]>([]);
 
   const handleSearch = async (cocktailName: string) => {
     try {
@@ -25,24 +28,23 @@ const HomePage = () => {
   };
 
   const handleAddToBasket = (cocktail: Cocktail) => {
-    const savedBasket = localStorage.getItem("basket");
-    const basket = savedBasket ? JSON.parse(savedBasket) : [];
-    basket.push(cocktail);
-    localStorage.setItem("basket", JSON.stringify(basket));
-    // Update basket count in NavBar (or a global state)
+    setBasket((prevBasket) => [...prevBasket, cocktail]);
   };
 
   return (
     <Layout title="Cocktail Viewer">
-      <SearchBar onSearch={handleSearch} />
-      <div className={styles.gridContainer}>
-        {cocktails.map((cocktail) => (
-          <CocktailCard
-            key={cocktail.idDrink}
-            cocktail={cocktail}
-            onAddToBasket={handleAddToBasket}
-          />
-        ))}
+      <NavBar basketCount={basket.length} />
+      <div className={styles.container}>
+        <SearchBar onSearch={handleSearch} />
+        <div className={styles.gridContainer}>
+          {cocktails.map((cocktail) => (
+            <CocktailCard
+              key={cocktail.idDrink}
+              cocktail={cocktail}
+              onAddToBasket={handleAddToBasket}
+            />
+          ))}
+        </div>
       </div>
     </Layout>
   );

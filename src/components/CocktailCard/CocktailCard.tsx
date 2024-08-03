@@ -1,3 +1,4 @@
+// components/CocktailCard.tsx
 import Image from "next/image";
 import styles from "./CocktailCard.module.scss";
 import { Cocktail } from "@/interfaces/interfaces";

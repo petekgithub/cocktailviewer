@@ -1,39 +1,29 @@
-// components/NavBar/NavBar.tsx
+// components/NavBar.tsx
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import styles from "./NavBar.module.scss";
 
-export default function NavBar() {
-  const [basketCount, setBasketCount] = useState<number>(0);
+interface NavBarProps {
+  basketCount: number;
+}
 
-  useEffect(() => {
-    const savedBasket = localStorage.getItem("basket");
-    if (savedBasket) {
-      setBasketCount(JSON.parse(savedBasket).length);
-    }
-  }, []);
-
+export default function NavBar({ basketCount }: NavBarProps) {
   return (
-    <nav className="py-5 px-12 flex justify-between">
-      <Link href="/">
-        <p className="bg-white text-3xl font-bold underline underline-offset-4 decoration-wavy decoration-2 decoration-emerald-500">
-          fresh
-        </p>
-      </Link>
+    <nav className={styles.navbar}>
+      <div className={styles.spacer} /> {/* Empty div for spacing */}
       <Link href="/saved-cocktails">
-        <button className="relative">
+        <div className={styles.cartButton}>
           <Image
             src="/cart.svg"
             width={40}
             height={40}
             alt="shopping cart icon"
+            className={styles.cartIcon}
           />
           {basketCount > 0 && (
-            <div className="rounded-full flex justify-center items-center bg-emerald-500 text-xs text-white absolute w-6 h-5 bottom-6 -right-1">
-              {basketCount}
-            </div>
+            <div className={styles.basketCount}>{basketCount}</div>
           )}
-        </button>
+        </div>
       </Link>
     </nav>
   );

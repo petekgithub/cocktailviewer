@@ -1,25 +1,30 @@
+// components/SearchBar/SearchBar.tsx
 import { useState } from "react";
 import styles from "./SearchBar.module.scss";
-import { SearchBarProps } from "@/interfaces/interfaces";
+
+interface SearchBarProps {
+  onSearch: (cocktailName: string) => void;
+}
 
 const SearchBar = ({ onSearch }: SearchBarProps) => {
-  const [input, setInput] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSearch(input);
+  const handleSearch = () => {
+    onSearch(searchTerm);
   };
 
   return (
-    <form className={styles.searchBar} onSubmit={handleSubmit}>
+    <div className={styles.searchBar}>
       <input
         type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Search for a cocktail..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className={styles.input}
       />
-      <button type="submit">Search</button>
-    </form>
+      <button onClick={handleSearch} className={styles.button}>
+        Search
+      </button>
+    </div>
   );
 };
 

@@ -1,28 +1,25 @@
-import Head from "next/head";
+// components/Layout/Layout.tsx
 import { ReactNode } from "react";
+import Head from "next/head";
 import styles from "./Layout.module.scss";
-import NavBar from "../NavBar/NavBar";
 
 interface LayoutProps {
+  title: string;
   children: ReactNode;
-  title?: string;
 }
 
-const Layout = ({ children, title = "CocktailViewer" }: LayoutProps) => {
+const Layout = ({ title, children }: LayoutProps) => {
   return (
-    <div className={styles.layout}>
+    <>
       <Head>
         <title>{title}</title>
-        <meta
-          name="description"
-          content="The CocktailViewer app using the CocktailDB API with NextJS and Sass"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>{children}</main>
-      <footer className={styles.footer}>made by HelloPettek</footer>
-    </div>
+      <div className={styles.container}>
+        <header className={styles.header}>WEOLCOME THE COCKTAIL SEARCH</header>
+        <main className={styles.main}>{children}</main>
+        <footer className={styles.footer}>made by HelloPettek</footer>
+      </div>
+    </>
   );
 };
 
