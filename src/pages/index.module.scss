@@ -1,0 +1,6 @@
+.cocktail-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px; // Kartlar arası boşluk
+  margin-top: 16px; // Üstteki boşluk
+}

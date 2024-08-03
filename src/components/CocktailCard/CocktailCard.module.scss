@@ -1,3 +1,10 @@
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px; // Adjust gap between cards as needed
+  margin-bottom: 16px;
+}
+
 .card {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -20,9 +27,17 @@
   }
 
   button {
-    margin-top: 12px;
     padding: 8px 16px;
     font-size: 1rem;
+    margin-left: 0.5rem;
+    background-color: #b4ecba;
+    color: #fff;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
     cursor: pointer;
+
+    &:hover {
+      background-color: #a7e0ba;
+    }
   }
 }

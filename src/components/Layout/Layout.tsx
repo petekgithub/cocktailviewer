@@ -19,10 +19,10 @@ const Layout = ({ children, title = "CocktailViewer" }: LayoutProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className={styles.header}>Header Content</header>
+      <header className={styles.header}>Cocktail Search Page</header>
       <nav className={styles.nav}>Navigation Menu</nav>
       <main className={styles.main}>{children}</main>
-      <footer className={styles.footer}>Footer Content</footer>
+      <footer className={styles.footer}>made by HelloPettek</footer>
     </div>
   );
 };

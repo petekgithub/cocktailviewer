@@ -9,8 +9,17 @@
   }
 
   button {
-    padding: 0.5rem 1rem;
+    padding: 8px 16px;
     font-size: 1rem;
     margin-left: 0.5rem;
+    background-color: #d4f0d7;
+    color: #fff;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #a9f1c1;
+    }
   }
 }

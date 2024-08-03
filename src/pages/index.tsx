@@ -1,9 +1,11 @@
+// index.tsx
+import React, { useState } from "react";
 import Layout from "@/components/Layout/Layout";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import CocktailCard from "@/components/CocktailCard/CocktailCard";
 import Basket from "@/components/Basket/Basket";
 import { Cocktail, CocktailData } from "@/interfaces/interfaces";
-import { useState } from "react";
+import styles from "./index.module.scss"; // Yeni eklediğimiz Sass dosyası
 
 const HomePage = () => {
   const [cocktails, setCocktails] = useState<Cocktail[]>([]);
@@ -37,7 +39,7 @@ const HomePage = () => {
   return (
     <Layout title="Cocktail Viewer">
       <SearchBar onSearch={handleSearch} />
-      <div className="cocktail-list">
+      <div className={styles["cocktail-list"]}>
         {cocktails.map((cocktail) => (
           <CocktailCard
             key={cocktail.idDrink}
