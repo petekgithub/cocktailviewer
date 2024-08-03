@@ -1,15 +1,12 @@
-// index.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import Layout from "@/components/Layout/Layout";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import CocktailCard from "@/components/CocktailCard/CocktailCard";
-import Basket from "@/components/Basket/Basket";
 import { Cocktail, CocktailData } from "@/interfaces/interfaces";
-import styles from "./index.module.scss"; // Yeni eklediğimiz Sass dosyası
+import styles from "./index.module.scss";
 
 const HomePage = () => {
   const [cocktails, setCocktails] = useState<Cocktail[]>([]);
-  const [basket, setBasket] = useState<string[]>([]);
 
   const handleSearch = async (cocktailName: string) => {
     try {
@@ -27,19 +24,18 @@ const HomePage = () => {
     }
   };
 
-  const handleAddToBasket = (id: string) => {
-    setBasket((prevBasket) => [...prevBasket, id]);
-  };
-
-  const handleSaveBasket = () => {
-    console.log("Saving Basket:", basket);
-    setBasket([]);
+  const handleAddToBasket = (cocktail: Cocktail) => {
+    const savedBasket = localStorage.getItem("basket");
+    const basket = savedBasket ? JSON.parse(savedBasket) : [];
+    basket.push(cocktail);
+    localStorage.setItem("basket", JSON.stringify(basket));
+    // Update basket count in NavBar (or a global state)
   };
 
   return (
     <Layout title="Cocktail Viewer">
       <SearchBar onSearch={handleSearch} />
-      <div className={styles["cocktail-list"]}>
+      <div className={styles.gridContainer}>
         {cocktails.map((cocktail) => (
           <CocktailCard
             key={cocktail.idDrink}
@@ -48,7 +44,6 @@ const HomePage = () => {
           />
         ))}
       </div>
-      <Basket cocktails={basket} onSave={handleSaveBasket} />
     </Layout>
   );
 };

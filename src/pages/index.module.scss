@@ -1,6 +1,55 @@
-.cocktail-list {
+.gridContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px; // Kartlar arası boşluk
-  margin-top: 16px; // Üstteki boşluk
+  grid-template-columns: repeat(3, 1fr); /* 3 sütunlu grid */
+  gap: 16px; /* Kartlar arasındaki boşluk */
+  justify-items: center; /* Kartları merkezle */
+  padding: 16px; /* Grid konteynerinin iç boşluğu */
+  width: 100%; /* Kapsayıcı genişliği */
+  max-width: 1200px; /* Maksimum genişlik */
+  margin: 0 auto; /* Ortalamak için */
+}
+.card {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  right: 0;
+  top: 0;
+  width: 100%;
+  max-width: 20rem;
+  padding: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+  margin-bottom: 16px;
+
+  .image {
+    border-radius: 8px;
+  }
+
+  h3 {
+    margin-top: 16px;
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin-top: 8px;
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    margin-top: 12px;
+    background-color: #b4ecba;
+    color: #fff;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #a7e0ba;
+    }
+  }
 }

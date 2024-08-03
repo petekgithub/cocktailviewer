@@ -4,7 +4,7 @@ import { Cocktail } from "@/interfaces/interfaces";
 
 interface CocktailCardProps {
   cocktail: Cocktail;
-  onAddToBasket: (id: string) => void;
+  onAddToBasket: (cocktail: Cocktail) => void;
 }
 
 const CocktailCard = ({ cocktail, onAddToBasket }: CocktailCardProps) => {
@@ -17,9 +17,9 @@ const CocktailCard = ({ cocktail, onAddToBasket }: CocktailCardProps) => {
         height={300}
         className={styles.image}
       />
-      <h3>{cocktail.strDrink}</h3>
-      <p>{cocktail.strInstructions}</p>
-      <button onClick={() => onAddToBasket(cocktail.idDrink)}>
+      <h3 className={styles.cardTitle}>{cocktail.strDrink}</h3>
+      <p className={styles.cardDescription}>{cocktail.strInstructions}</p>
+      <button onClick={() => onAddToBasket(cocktail)} className={styles.button}>
         Add to Basket
       </button>
     </div>
