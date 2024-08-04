@@ -15,7 +15,6 @@ const Layout = ({ title, children }: LayoutProps) => {
         <title>{title}</title>
       </Head>
       <div className={styles.container}>
-        <header className={styles.header}>WEOLCOME THE COCKTAIL SEARCH</header>
         <main className={styles.main}>{children}</main>
         <footer className={styles.footer}>made by HelloPettek</footer>
       </div>

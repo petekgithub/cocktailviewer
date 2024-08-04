@@ -1,4 +1,3 @@
-// components/SearchBar/SearchBar.tsx
 import { useState } from "react";
 import styles from "./SearchBar.module.scss";
 

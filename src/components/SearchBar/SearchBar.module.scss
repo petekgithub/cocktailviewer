@@ -1,6 +1,6 @@
 .searchBar {
   display: flex;
-  margin-bottom: 1rem;
+  margin: 1rem 0; /* Added margin to separate from the NavBar */
 
   input {
     flex: 1;

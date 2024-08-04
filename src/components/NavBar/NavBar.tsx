@@ -1,4 +1,3 @@
-// components/NavBar.tsx
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./NavBar.module.scss";
