@@ -4,9 +4,10 @@ import styles from "./NavBar.module.scss";
 
 interface NavBarProps {
   basketCount: number;
+  saveBasket: () => void; // Add this prop to handle saving
 }
 
-export default function NavBar({ basketCount }: NavBarProps) {
+export default function NavBar({ basketCount, saveBasket }: NavBarProps) {
   return (
     <nav className={styles.navbar}>
       <div className={styles.spacer} /> {/* Empty div for spacing */}
@@ -24,6 +25,9 @@ export default function NavBar({ basketCount }: NavBarProps) {
           )}
         </div>
       </Link>
+      <button onClick={saveBasket} className={styles.saveButton}>
+        Save
+      </button>
     </nav>
   );
 }

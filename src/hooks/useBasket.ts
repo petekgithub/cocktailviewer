@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Cocktail } from "@/interfaces/interfaces";
 
-export function useBasket() {
+export const useBasket = () => {
   const [basket, setBasket] = useState<Cocktail[]>([]);
   const [basketCount, setBasketCount] = useState<number>(0);
 
@@ -11,15 +11,26 @@ export function useBasket() {
   }, [basket]);
 
   const addItemToBasket = (cocktail: Cocktail) => {
-    setBasket((prevBasket) => [...prevBasket, cocktail]);
+    setBasket((prevBasket) => {
+      console.log("Adding item to basket:", cocktail);
+      const newBasket = [...prevBasket, cocktail];
+      console.log("Updated basket:", newBasket);
+      return newBasket;
+    });
   };
 
   const removeItemFromBasket = () => {
-    setBasket((prevBasket) => prevBasket.slice(0, -1));
+    setBasket((prevBasket) => {
+      console.log("Removing item from basket");
+      const newBasket = prevBasket.slice(0, -1);
+      console.log("Updated basket:", newBasket);
+      return newBasket;
+    });
   };
 
   const saveBasket = () => {
-    // Logic to save the basket to the saved cocktails page
+    console.log("Saving basket:", basket);
+    localStorage.setItem("savedCocktails", JSON.stringify(basket));
   };
 
   return {
@@ -28,4 +39,4 @@ export function useBasket() {
     removeItemFromBasket,
     saveBasket,
   };
-}
+};
