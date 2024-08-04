@@ -1,3 +1,4 @@
+// components/CocktailCard.tsx
 import { useState, useCallback } from "react";
 import Image from "next/image";
 import { Cocktail } from "@/interfaces/interfaces";
@@ -19,17 +20,6 @@ const CocktailCard = ({
   const handleImageError = () => {
     setImageError(true);
   };
-
-  const handleRemoveClick = useCallback(() => {
-    console.log("Remove button clicked");
-    const confirmRemove = window.confirm(
-      "Do you want to remove this cocktail from your basket?"
-    );
-    if (confirmRemove) {
-      console.log("Confirming removal");
-      onRemoveFromBasket(cocktail.idDrink);
-    }
-  }, [cocktail.idDrink, onRemoveFromBasket]);
 
   return (
     <div className={styles.card}>
@@ -55,7 +45,10 @@ const CocktailCard = ({
         >
           Add to Basket
         </button>
-        <button className={styles.button} onClick={handleRemoveClick}>
+        <button
+          className={styles.button}
+          onClick={() => onRemoveFromBasket(cocktail.idDrink)}
+        >
           Remove from Basket
         </button>
       </div>

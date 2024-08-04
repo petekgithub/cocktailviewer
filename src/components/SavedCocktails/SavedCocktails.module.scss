@@ -1,0 +1,10 @@
+// components/SavedCocktails.module.scss
+.container {
+  padding: 20px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
