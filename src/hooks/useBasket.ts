@@ -11,25 +11,14 @@ export const useBasket = () => {
   }, [basket]);
 
   const addItemToBasket = (cocktail: Cocktail) => {
-    setBasket((prevBasket) => {
-      console.log("Adding item to basket:", cocktail);
-      const newBasket = [...prevBasket, cocktail];
-      console.log("Updated basket:", newBasket);
-      return newBasket;
-    });
+    setBasket((prevBasket) => [...prevBasket, cocktail]);
   };
 
   const removeItemFromBasket = () => {
-    setBasket((prevBasket) => {
-      console.log("Removing item from basket");
-      const newBasket = prevBasket.slice(0, -1);
-      console.log("Updated basket:", newBasket);
-      return newBasket;
-    });
+    setBasket((prevBasket) => prevBasket.slice(0, -1));
   };
 
   const saveBasket = () => {
-    console.log("Saving basket:", basket);
     localStorage.setItem("savedCocktails", JSON.stringify(basket));
   };
 

@@ -1,10 +1,11 @@
+// components/NavBar.tsx
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./NavBar.module.scss";
 
 interface NavBarProps {
   basketCount: number;
-  saveBasket: () => void; // Add this prop to handle saving
+  saveBasket: () => void;
 }
 
 export default function NavBar({ basketCount, saveBasket }: NavBarProps) {

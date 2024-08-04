@@ -1,3 +1,4 @@
+// pages/saved-cocktails.tsx
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./saved-cocktails.module.scss";

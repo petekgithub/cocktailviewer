@@ -1,11 +1,23 @@
-// pages/index.tsx
 import { useState } from "react";
 import Layout from "@/components/Layout/Layout";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import CocktailCard from "@/components/CocktailCard/CocktailCard";
+import NavBar from "@/components/NavBar/NavBar";
 import { Cocktail, CocktailData } from "@/interfaces/interfaces";
 import styles from "./index.module.scss";
-import NavBar from "@/components/NavBar/NavBar";
+
+const fetchWithTimeout = (
+  url: string,
+  options: RequestInit = {},
+  timeout: number = 10000
+): Promise<Response> => {
+  return Promise.race([
+    fetch(url, options),
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("Timeout")), timeout)
+    ),
+  ]);
+};
 
 const HomePage = () => {
   const [cocktails, setCocktails] = useState<Cocktail[]>([]);
@@ -13,7 +25,7 @@ const HomePage = () => {
 
   const handleSearch = async (cocktailName: string) => {
     try {
-      const response = await fetch(
+      const response = await fetchWithTimeout(
         `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`
       );
       if (!response.ok) {
@@ -28,12 +40,29 @@ const HomePage = () => {
   };
 
   const handleAddToBasket = (cocktail: Cocktail) => {
-    setBasket((prevBasket) => [...prevBasket, cocktail]);
+    if (window.confirm("Do you want to add this cocktail to your basket?")) {
+      setBasket((prevBasket) => [...prevBasket, cocktail]);
+    }
+  };
+
+  const handleRemoveFromBasket = (cocktailId: string) => {
+    if (
+      window.confirm("Do you want to remove this cocktail from your basket?")
+    ) {
+      setBasket((prevBasket) =>
+        prevBasket.filter((cocktail) => cocktail.idDrink !== cocktailId)
+      );
+    }
+  };
+
+  const saveBasket = () => {
+    localStorage.setItem("savedCocktails", JSON.stringify(basket));
+    alert("Basket saved!");
   };
 
   return (
     <Layout title="Cocktail Viewer">
-      <NavBar basketCount={basket.length} />
+      <NavBar basketCount={basket.length} saveBasket={saveBasket} />
       <div className={styles.container}>
         <SearchBar onSearch={handleSearch} />
         <div className={styles.gridContainer}>
@@ -42,6 +71,7 @@ const HomePage = () => {
               key={cocktail.idDrink}
               cocktail={cocktail}
               onAddToBasket={handleAddToBasket}
+              onRemoveFromBasket={handleRemoveFromBasket}
             />
           ))}
         </div>

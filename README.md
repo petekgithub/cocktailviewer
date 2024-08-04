@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Developer Technical Task
 
-## Getting Started
+In this task you will create a cocktail viewer using The Cocktail DB. You are required to use Next.JS (App Router). Try using server components as much as you can.
 
-First, run the development server:
+1. Cocktail Search Page [MUST]
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Create a page with a search bar that takes in the cocktail name and lists the result cards below. You can style the cards the way you please. They must have a button for adding the cocktail into the cocktail basket. This basket must be in RAM and clear after a page refresh. Your basket component should have a save button that will add the cocktails into the saved cocktails page.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Saved Cocktails [MUST]
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This page must contain the cocktails that have been saved by the user. The cards here must be persistent and not clear after a page refresh. The user can remove a card from the list if they wish.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Login Page [OPTIONAL]
 
-## Learn More
+Create a login page with a dummy user. Login-wall your application by redirecting the user back to auth page if they try to visit the cocktail pages.
 
-To learn more about Next.js, take a look at the following resources:
+Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+You must use Next.JS 14 with App router for this task. The less client-side components you use the better. Here are the things you can use/implement to get bonus points:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+CSS Modules
+SASS
+Environment Variables (if needed)
+Ask for confirmation when user wants to add a cocktail to a basket or remove it
