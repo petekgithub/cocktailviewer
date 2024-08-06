@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import CocktailCard from "@/components/CocktailCard/CocktailCard";
 import { Cocktail } from "@/interfaces/interfaces";
 

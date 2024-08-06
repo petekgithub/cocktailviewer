@@ -28,9 +28,11 @@ export const useBasket = () => {
     });
   };
 
-  const removeItemFromBasket = () => {
+  const removeItemFromBasket = (cocktailId: string) => {
     setBasket((prevBasket) => {
-      const updatedBasket = prevBasket.slice(0, -1);
+      const updatedBasket = prevBasket.filter(
+        (cocktail) => cocktail.idDrink !== cocktailId
+      );
       if (typeof window !== "undefined") {
         localStorage.setItem("savedCocktails", JSON.stringify(updatedBasket));
       }
@@ -45,6 +47,7 @@ export const useBasket = () => {
   };
 
   return {
+    basket,
     basketCount,
     addItemToBasket,
     removeItemFromBasket,

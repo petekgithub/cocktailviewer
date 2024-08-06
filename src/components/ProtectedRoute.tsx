@@ -1,4 +1,3 @@
-// src/components/ProtectedRoute.tsx
 import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
@@ -13,16 +12,16 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
   useEffect(() => {
     const authToken = getCookie("authToken");
-    if (authToken === "dummyToken") {
+    if (authToken) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
-      router.push("/login");
+      router.push(`/login?next=${router.asPath}`);
     }
   }, [router]);
 
   if (isAuthenticated === null) {
-    return <div>Loading...</div>; // Optional: Loading state or spinner
+    return <div>Loading...</div>;
   }
 
   return <>{children}</>;

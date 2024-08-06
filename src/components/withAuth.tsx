@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
 
-const withAuth = (WrappedComponent: any) => {
+const withAuth = (WrappedComponent: React.ComponentType<any>) => {
   const WithAuthComponent = (props: any) => {
     const router = useRouter();
 
     useEffect(() => {
       const authToken = getCookie("authToken");
       if (!authToken) {
-        router.push("/login");
+        router.push(`/login?next=${router.asPath}`);
       }
     }, [router]);
 
@@ -23,7 +23,7 @@ const withAuth = (WrappedComponent: any) => {
   return WithAuthComponent;
 };
 
-function getDisplayName(WrappedComponent: any) {
+function getDisplayName(WrappedComponent: React.ComponentType<any>) {
   return WrappedComponent.displayName || WrappedComponent.name || "Component";
 }
 
