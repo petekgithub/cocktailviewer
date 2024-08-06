@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Layout from "@/components/Layout/Layout";
 import styles from "./saved-cocktails.module.scss";
+import withAuth from "@/components/withAuth";
+import Image from "next/image";
+import { getSavedCocktails } from "@/utils/localStorage";
 
 interface Cocktail {
   idDrink: string;
@@ -9,17 +12,14 @@ interface Cocktail {
   strInstructions: string;
 }
 
-const SavedCocktails = () => {
+const SavedCocktailsPage = () => {
   const [savedCocktails, setSavedCocktails] = useState<Cocktail[]>([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("savedCocktails");
-    if (saved) {
-      setSavedCocktails(JSON.parse(saved));
-    }
-  }, []);
+    setSavedCocktails(getSavedCocktails());
+  }, []); // Bu useEffect yalnızca bileşen ilk yüklendiğinde çalışır
 
-  const handleRemoveClick = (id: string) => {
+  const handleRemove = (id: string) => {
     const updatedCocktails = savedCocktails.filter(
       (cocktail) => cocktail.idDrink !== id
     );
@@ -28,35 +28,39 @@ const SavedCocktails = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h1>Saved Cocktails</h1>
-      <ul className={styles.cardList}>
-        {savedCocktails.map((cocktail) => (
-          <li key={cocktail.idDrink}>
-            <div className={styles.card}>
-              <Image
-                src={cocktail.strDrinkThumb}
-                alt={cocktail.strDrink}
-                width={200}
-                height={200}
-                className={styles.image}
-              />
-              <h3 className={styles.cardTitle}>{cocktail.strDrink}</h3>
-              <p className={styles.cardDescription}>
-                {cocktail.strInstructions}
-              </p>
-              <button
-                className={styles.button}
-                onClick={() => handleRemoveClick(cocktail.idDrink)}
-              >
-                Remove from Basket
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Layout title="Saved Cocktails">
+      <div className={styles.container}>
+        <h1>Saved Cocktails</h1>
+        <ul className={styles.cardList}>
+          {savedCocktails.length > 0 ? (
+            savedCocktails.map((cocktail) => (
+              <li key={cocktail.idDrink} className={styles.card}>
+                <Image
+                  src={cocktail.strDrinkThumb}
+                  alt={cocktail.strDrink}
+                  width={200}
+                  height={200}
+                  className={styles.image}
+                />
+                <h3 className={styles.cardTitle}>{cocktail.strDrink}</h3>
+                <p className={styles.cardDescription}>
+                  {cocktail.strInstructions}
+                </p>
+                <button
+                  onClick={() => handleRemove(cocktail.idDrink)}
+                  className={styles.removeButton}
+                >
+                  Remove
+                </button>
+              </li>
+            ))
+          ) : (
+            <p>No saved cocktails found.</p>
+          )}
+        </ul>
+      </div>
+    </Layout>
   );
 };
 
-export default SavedCocktails;
+export default withAuth(SavedCocktailsPage);

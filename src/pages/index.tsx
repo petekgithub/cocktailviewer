@@ -4,6 +4,7 @@ import SearchBar from "@/components/SearchBar/SearchBar";
 import CocktailCard from "@/components/CocktailCard/CocktailCard";
 import NavBar from "@/components/NavBar/NavBar";
 import { Cocktail, CocktailData } from "@/interfaces/interfaces";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import styles from "./index.module.scss";
 
 const fetchWithTimeout = (
@@ -61,22 +62,24 @@ const HomePage = () => {
   };
 
   return (
-    <Layout title="Cocktail Viewer">
-      <NavBar basketCount={basket.length} saveBasket={saveBasket} />
-      <div className={styles.container}>
-        <SearchBar onSearch={handleSearch} />
-        <div className={styles.gridContainer}>
-          {cocktails.map((cocktail) => (
-            <CocktailCard
-              key={cocktail.idDrink}
-              cocktail={cocktail}
-              onAddToBasket={handleAddToBasket}
-              onRemoveFromBasket={handleRemoveFromBasket}
-            />
-          ))}
+    <ProtectedRoute>
+      <Layout title="Cocktail Viewer">
+        <NavBar basketCount={basket.length} saveBasket={saveBasket} />
+        <div className={styles.container}>
+          <SearchBar onSearch={handleSearch} />
+          <div className={styles.gridContainer}>
+            {cocktails.map((cocktail) => (
+              <CocktailCard
+                key={cocktail.idDrink}
+                cocktail={cocktail}
+                onAddToBasket={handleAddToBasket}
+                onRemoveFromBasket={handleRemoveFromBasket}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </ProtectedRoute>
   );
 };
 

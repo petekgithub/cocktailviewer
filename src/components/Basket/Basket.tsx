@@ -1,4 +1,3 @@
-// app/basket/page.tsx
 import { useState, useEffect } from "react";
 import CocktailCard from "@/components/CocktailCard/CocktailCard";
 import { Cocktail } from "@/interfaces/interfaces";
@@ -7,21 +6,27 @@ const Basket = () => {
   const [basket, setBasket] = useState<Cocktail[]>([]);
 
   useEffect(() => {
-    const storedCocktails = localStorage.getItem("savedCocktails");
-    if (storedCocktails) {
-      setBasket(JSON.parse(storedCocktails));
+    if (typeof window !== "undefined") {
+      const storedCocktails = localStorage.getItem("savedCocktails");
+      if (storedCocktails) {
+        setBasket(JSON.parse(storedCocktails));
+      }
     }
   }, []);
 
   const handleSave = () => {
-    localStorage.setItem("savedCocktails", JSON.stringify(basket));
-    alert("Cocktails saved!");
+    if (typeof window !== "undefined") {
+      localStorage.setItem("savedCocktails", JSON.stringify(basket));
+      alert("Cocktails saved!");
+    }
   };
 
   const handleRemove = (id: string) => {
     const updatedBasket = basket.filter((cocktail) => cocktail.idDrink !== id);
     setBasket(updatedBasket);
-    localStorage.setItem("savedCocktails", JSON.stringify(updatedBasket));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("savedCocktails", JSON.stringify(updatedBasket));
+    }
   };
 
   return (
@@ -30,7 +35,11 @@ const Basket = () => {
       <div className="cardContainer">
         {basket.map((cocktail) => (
           <div key={cocktail.idDrink} className="relative">
-            <CocktailCard cocktail={cocktail} onAddToBasket={() => {}} />
+            <CocktailCard
+              cocktail={cocktail}
+              onAddToBasket={() => {}}
+              onRemoveFromBasket={handleRemove}
+            />
             <button
               onClick={() => handleRemove(cocktail.idDrink)}
               className="absolute top-2 right-2 bg-red-500 text-white py-1 px-2 rounded"

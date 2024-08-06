@@ -1,5 +1,4 @@
-// components/CocktailCard.tsx
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Cocktail } from "@/interfaces/interfaces";
 import styles from "./CocktailCard.module.scss";

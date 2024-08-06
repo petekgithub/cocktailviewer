@@ -1,11 +1,17 @@
-// utils/localStorage.ts
-import { Cocktail } from "@/interfaces/interfaces"; // Adjust the path as needed
+import { Cocktail } from "@/interfaces/interfaces";
 
-export const getSavedCocktails = (): Cocktail[] => {
-  const savedCocktails = localStorage.getItem("savedCocktails");
-  return savedCocktails ? JSON.parse(savedCocktails) : [];
+export const saveCocktail = (cocktail: Cocktail) => {
+  const existingCocktails = localStorage.getItem("savedCocktails");
+  let cocktails: Cocktail[] = existingCocktails
+    ? JSON.parse(existingCocktails)
+    : [];
+  if (!cocktails.some((c) => c.idDrink === cocktail.idDrink)) {
+    cocktails.push(cocktail);
+    localStorage.setItem("savedCocktails", JSON.stringify(cocktails));
+  }
 };
 
-export const saveCocktails = (cocktails: Cocktail[]) => {
-  localStorage.setItem("savedCocktails", JSON.stringify(cocktails));
+export const getSavedCocktails = (): Cocktail[] => {
+  const saved = localStorage.getItem("savedCocktails");
+  return saved ? JSON.parse(saved) : [];
 };
