@@ -13,8 +13,8 @@
   transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
 
   &:hover {
-    background-color: #f9f9f9; /* Slightly darker background on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    background-color: #f9f9f9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-4px); /* Lift the card up slightly on hover */
   }
 }

@@ -22,9 +22,3 @@ CSS Modules
 SASS
 Environment Variables (if needed)
 Ask for confirmation when user wants to add a cocktail to a basket or remove it
-
-/ ! not finished - CHECK THESE !!/
-
-- login
-- saved-cocktails for new cocktails
-- for ex., add the same cocktails for example twice or three times, multiple times, we also see these numbers on the saved-cocktails pages.

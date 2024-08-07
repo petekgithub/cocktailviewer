@@ -14,10 +14,12 @@ export const useBasket = () => {
     }
   }, []);
 
+  // update the basketcount
   useEffect(() => {
     setBasketCount(basket.length);
   }, [basket]);
 
+  //addItemToBasket
   const addItemToBasket = (cocktail: Cocktail) => {
     setBasket((prevBasket) => {
       const updatedBasket = [...prevBasket, cocktail];

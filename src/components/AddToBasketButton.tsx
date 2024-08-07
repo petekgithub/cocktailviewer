@@ -1,4 +1,3 @@
-// components/AddToBasketButton.tsx
 import { useBasket } from "@/hooks/useBasket";
 import { Cocktail } from "@/interfaces/interfaces";
 

@@ -1,4 +1,3 @@
-// utils/localStorage.ts
 import { Cocktail } from "@/interfaces/interfaces";
 
 export const saveCocktail = (cocktail: Cocktail) => {

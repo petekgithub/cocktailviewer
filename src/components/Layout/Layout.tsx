@@ -1,4 +1,3 @@
-// components/Layout/Layout.tsx
 import { ReactNode } from "react";
 import Head from "next/head";
 import styles from "./Layout.module.scss";
