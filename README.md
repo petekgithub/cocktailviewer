@@ -1,4 +1,4 @@
-# Frontend Developer Technical Task
+
 
 In this task you will create a cocktail viewer using The Cocktail DB. You are required to use Next.JS (App Router). Try using server components as much as you can.
 
